@@ -66,7 +66,16 @@
       margin-top:30px;
     }
 
-    .gallery img{width:100%;border-radius:20px;}
+    .slider {
+  max-width: 400px;
+  margin: auto;
+}
+
+.slider img {
+  width: 100%;
+  border-radius: 20px;
+  transition: 1s;
+}
 
     .heart{
       position:fixed;
@@ -109,13 +118,9 @@
 
 <section>
   <h2>Our Moments 📸</h2>
-  <div class="gallery">
-    <img src="photo1.jpg">
-    <img src="photo2.jpg">
-    <img src="photo3.jpg">
-    <img src="photo4.jpg">
-    <img src="photo5.jpg">
-  </div>
+  <div class="slider">
+  <img id="slide" src="photo1.jpg">
+</div>
 </section>
 
 <section>
@@ -197,6 +202,29 @@ for(let i=0;i<50;i++){
   s.style.left=Math.random()*100+'vw';
   document.body.appendChild(s);
 }
+
+// image slider
+const images = [
+  'photo1.jpg',
+  'photo2.jpg',
+  'photo3.jpg',
+  'photo4.jpg',
+  'photo5.jpg',
+  'photo6.jpg',
+  'photo7.jpg',
+  'photo8.jpg',
+  'photo9.jpg',
+  'photo10.jpg',
+  'photo11.jpg',
+  'photo12.jpg',
+  'photo13.jpg',
+  'photo14.jpg'
+];
+let i = 0;
+setInterval(() => {
+  i = (i + 1) % images.length;
+  document.getElementById('slide').src = images[i];
+}, 2500);
 </script>
 
 </body>
