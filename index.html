@@ -110,9 +110,7 @@
 
 <section id="message">
   <div class="card">
-    <p>You didn’t just come into my life… you became a special part of it 💜</p>
-    <br>
-    <p>And honestly… everything feels a Much better because of you ✨</p>
+    <p id="msg1"></p>
   </div>
 </section>
 
@@ -126,9 +124,7 @@
 <section>
   <h2>Why You Matter 💜</h2>
   <div class="card">
-    <p>• Your smile changes my mood instantly 😊</p>
-    <p>• You are soft ,cutee ,beautiful ,kind and real 💖</p>
-    <p>• Being with you feels like Home that i never imagine ✨</p>
+    <p id="msg2"></p>
   </div>
 </section>
 
@@ -136,15 +132,7 @@
   <button class="btn" onclick="showSpecial()">💌 Special Message</button>
   <div id="special" style="display:none;margin-top:20px;">
     <div class="card">
-      <p>I don’t know the perfect words… but I’ll still try 💜</p>
-      <br>
-      <p>From the moment you came into my life it was so random, something felt different… something felt right ✨</p>
-      <br>
-      <p>You are not just special… you are someone I truly care about, more than I show sometimes its never gone end how i care about you 💖</p>
-      <br>
-      <p>I just want you to always stay happy, keep smiling… because your smile means a lot to me 😊</p>
-      <br>
-      <p>And maybe one day… I’ll say everything that I feel just 💜</p>
+      <p id="msg4"></p>
     </div>
   </div>
 </section>
@@ -153,10 +141,7 @@
   <button class="btn" onclick="showFinal()">One Last Thing 💖</button>
   <div id="final" style="display:none;margin-top:20px;">
     <h2>I Care About You 💜</h2>
-    <p>More than you think… more than I show ✨</p>
-    <p>you are the person that i trust without any hesitation </p>
-    <br>
-    <p>you are the person that i can live my whole life by holding your hand and travel the whole world 💖</p>
+    <p id="msg5" style="margin-top:20px;"></p>
     
   </div>
 </section>
@@ -168,7 +153,40 @@
 </audio>
 
 <script>
+function typeText(id, text, speed = 40) {
+  let i = 0;
+  const el = document.getElementById(id);
+  el.innerHTML = "";
+
+  function typing() {
+    if (i < text.length) {
+
+      // pause for ...
+      if (text.substring(i, i+3) === "...") {
+        el.innerHTML += "...";
+        i += 3;
+        setTimeout(typing, 600);
+        return;
+      }
+
+      // pause for |
+      if (text.charAt(i) === "|") {
+        i++;
+        setTimeout(typing, 1000);
+        return;
+      }
+
+      el.innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typing, speed);
+    }
+  }
+
+  typing();
+}
 function go(id){
+  typeText('msg1', "Happy Birthday Dhabuu! You didn’t just come into my life… you became a special part of it 💜 And honestly… everything feels a Much better because of you. I hope this day is as special as you are to me. You deserve all the happiness in the world. I care about you so much and I'm grateful to have you in my life. Wishing you a day filled with love, laughter, and unforgettable moments. 💜✨", 80);
+  typeText('msg2', "Your smile changes my mood instantly 😊 You are soft ,cutee ,beautiful ,kind and real. Being with you feels like Home that i never imagine ✨ You are the person that I can share my deepest thoughts with, Your presence brings me comfort and joy, and I cherish every moment we spend togethe.and I'm grateful to have you in my life. and I hope you always know how much you mean to me. 💜✨", 80);
   document.getElementById(id).scrollIntoView({behavior:'smooth'});
 
   // play music on first interaction
@@ -187,8 +205,36 @@ function go(id){
     }
   }, 200);
 } 
-function showFinal(){document.getElementById('final').style.display='block';}
-function showSpecial(){document.getElementById('special').style.display='block';}
+function showSpecial(){
+  document.getElementById('special').style.display='block';
+
+  // clear previous text (IMPORTANT)
+  document.getElementById('msg4').innerHTML = "";
+
+  // start typing again
+  typeText("msg4",
+`I don’t know the perfect words... | but I’ll still try 💜
+
+From the moment you came into my life... something felt different... | something felt right ✨
+
+You are not just special... | you are someone I truly care about I care about you more than words can express 💖
+
+I just want you to always stay happy... 😊
+
+And maybe one day... | I’ll say everything that I feel 💜`, 80);
+}
+function showFinal(){
+  document.getElementById('final').style.display='block';
+
+  document.getElementById('msg5').innerHTML = "";
+
+  typeText("msg5",
+`More than you think... | more than I show ✨
+
+You are the person I trust without hesitation 💜
+
+And someone I can imagine walking through life with 💖`, 80);
+}
 
 setInterval(()=>{
   let h=document.createElement('div');
