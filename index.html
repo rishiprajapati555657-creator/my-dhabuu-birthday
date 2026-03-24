@@ -115,14 +115,10 @@
 </section>
 
 <section>
-  <button class="btn" onclick="showMoments()">📸 See Our Moments</button>
-
-  <div id="moments" style="display:none;margin-top:20px;">
-    <h2>Our Moments 📸</h2>
-    <div class="slider">
-      <img id="slide" src="photo1.jpg">
-    </div>
-  </div>
+  <h2>Our Moments 📸</h2>
+  <div class="slider">
+  <img id="slide" src="photo1.jpg">
+</div>
 </section>
 
 <section>
@@ -292,21 +288,11 @@ const images = [
   'photo14.jpg',
   'photo15.jpg'
 ];
-let sliderStarted = false;
-
-function startSlider(){
-  if(sliderStarted) return; // prevent multiple starts
-  sliderStarted = true;
-
-  setInterval(() => {
-    i = (i + 1) % images.length;
-    document.getElementById('slide').src = images[i];
-  }, 2500);
-}
-function showMoments(){
-  document.getElementById('moments').style.display = 'block';
-  startSlider();
-}
+let i = 0;
+setInterval(() => {
+  i = (i + 1) % images.length;
+  document.getElementById('slide').src = images[i];
+}, 2500);
 </script>
 
 </body>
