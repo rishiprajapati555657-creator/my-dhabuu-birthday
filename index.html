@@ -314,35 +314,19 @@ You are the person I trust without hesitation 💜
 
 And someone I can imagine walking through life with 💖`, 80);
     }
-    let sliderStarted = false;
-    let i = 0;
+   let i = 0;
 
-    function showMoments() {
-      const section = document.getElementById('moments');
-      section.style.display = 'block';
+function showMoments(){
+  const section = document.getElementById('moments');
+  section.style.display = 'block';
 
-      const img = document.getElementById('slide');
+  const img = document.getElementById('slide');
 
-      // first fade in
-      setTimeout(() => {
-        img.classList.add('show');
-      }, 100);
-
-      // start slider only once
-      if (sliderStarted) return;
-      sliderStarted = true;
-
-      setInterval(() => {
-        img.classList.remove('show');
-
-        setTimeout(() => {
-          i = (i + 1) % images.length;
-          img.src = images[i];
-          img.classList.add('show');
-        }, 500);
-
-      }, 3000);
-    }
+  setInterval(() => {
+    i++;
+    img.src = images[i % images.length];
+  }, 2500);
+}
 
     setInterval(() => {
       let h = document.createElement('div');
