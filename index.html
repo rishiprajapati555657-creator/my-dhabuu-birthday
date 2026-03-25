@@ -66,17 +66,18 @@
       margin-top:30px;
     }
 
-    .slider {
-  max-width: 400px;
-  margin: auto;
-}
-
-.slider img {
+    .slider img {
   width: 100%;
   border-radius: 20px;
-  transition: 1s;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 1s ease;
 }
 
+.slider img.show {
+  opacity: 1;
+  transform: scale(1);
+}
     .heart{
       position:fixed;
       bottom:-20px;
@@ -114,14 +115,14 @@
   </div>
 </section>
 
-<section>
+<section style="text-align:center;">
   <button class="btn" onclick="showMoments()">📸 See Our Moments</button>
+</section>
 
-  <div id="moments" style="display:none;margin-top:20px;">
-    <h2>Our Moments 📸</h2>
-    <div class="slider">
-      <img id="slide" src="photo1.jpg">
-    </div>
+<section id="moments" style="display:none;">
+  <h2>Our Moments 📸</h2>
+  <div class="slider">
+    <img id="slide" src="">
   </div>
 </section>
   
@@ -213,10 +214,6 @@ function go(id){
   }, 200);
 } 
   
-function showMoments(){
-  document.getElementById('moments').style.display = 'block';
-}
-  
 function showWhy(){
   document.getElementById('why').style.display='block';
 
@@ -297,11 +294,38 @@ const images = [
   'photo14.jpg',
   'photo15.jpg'
 ];
+
 let i = 0;
-setInterval(() => {
-  i = (i + 1) % images.length;
-  document.getElementById('slide').src = images[i];
-}, 2500);
+let sliderStarted = false;
+
+function showMoments(){
+  document.getElementById('moments').style.display = 'block';
+  document.getElementById('slide').src = images[0]; // show first image instantly
+
+  if (!sliderStarted) {
+    startSlider();
+    sliderStarted = true;
+  }
+}
+
+function startSlider(){
+  const img = document.getElementById('slide');
+
+  function nextImage(){
+    img.classList.remove('show');
+
+    setTimeout(() => {
+      img.src = images[i];
+      img.classList.add('show');
+      i = (i + 1) % images.length;
+    }, 500);
+  }
+
+  nextImage(); // first image
+
+  setInterval(nextImage, 3000); // slower = more emotional 💜
+}
+
 </script>
 
 </body>
