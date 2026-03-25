@@ -119,9 +119,12 @@
 
   <div id="moments" style="display:none;margin-top:20px;">
     <h2>Our Moments 📸</h2>
+    <div class="slider">
+      <img id="slide" src="photo1.jpg">
+    </div>
   </div>
 </section>
-
+  
 <section>
   <button class="btn" onclick="showWhy()">💜 Why You Matter To Me</button>
 
@@ -209,6 +212,11 @@ function go(id){
     }
   }, 200);
 } 
+  
+function showMoments(){
+  document.getElementById('moments').style.display = 'block';
+}
+  
 function showWhy(){
   document.getElementById('why').style.display='block';
 
