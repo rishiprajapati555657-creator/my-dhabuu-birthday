@@ -68,10 +68,15 @@
 
     .slider img {
   width: 100%;
+  max-width: 300px;   /* control size here */
+  height: auto;
   border-radius: 20px;
   opacity: 0;
   transform: scale(0.9);
   transition: all 1s ease;
+  display: block;
+  margin: auto;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 .slider img.show {
